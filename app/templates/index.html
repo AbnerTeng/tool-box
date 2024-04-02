@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing Web App</title>
+</head>
+
+<body>
+    <h1>Image Processing Web App</h1>
+
+    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+        <input type="radio" name="action" value="generate_qrcode"> Generate QR Code<br>
+        <input type="radio" name="action" value="remove_background"> Remove Background<br>
+
+        <div id="imageUpload" style="display: none;">
+            <label for="image">Upload an image:</label>
+            <input type="file" name="image" id="image">
+        </div>
+
+        <div id="urlInput" style="display: none;">
+            <label for="url">Enter URL:</label>
+            <input type="text" name="url" id="url" placeholder="Enter URL">
+        </div>
+
+        <button type="submit">Process</button>
+    </form>
+
+    <script>
+        document.querySelectorAll('input[name="action"]').forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                if (this.value === 'remove_background') {
+                    document.getElementById('imageUpload').style.display = 'block';
+                    document.getElementById('urlInput').style.display = 'none';
+                } else {
+                    document.getElementById('imageUpload').style.display = 'none';
+                    document.getElementById('urlInput').style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

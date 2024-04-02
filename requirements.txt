@@ -1,0 +1,4 @@
+flask==3.0.2
+rembg==2.0.50
+pillow==10.0.1
+qrcode==7.4.2
