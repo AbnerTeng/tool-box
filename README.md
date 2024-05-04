@@ -1,8 +1,11 @@
-# img_processor
+# NTU DAC tool box
 
-A simple web app to make qrcode and remove img background.
+A simple web app with several administrative tools
 
-> TO-DO: Dockerfile, unit-test, ALL UI/UX
+- Image Processor: Including QRcode generation and removing background
+- Auto Email Sender: Send the email automatically for different events 
+
+> TO-DO: RWD, Dockerfile, test
 
 ## Build Environment
 
@@ -20,5 +23,7 @@ python install -r requirements.txt
 python run.py
 ```
 
+---
 
-
+**Developer:** Yu-Chen Den
+**Project Manager:** Yu-Lin Zheng
