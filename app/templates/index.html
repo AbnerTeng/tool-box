@@ -4,42 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Processing Web App</title>
+    <title>NTU DAC Tool Box</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 
 <body>
-    <h1>Image Processing Web App</h1>
-
-    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
-        <input type="radio" name="action" value="generate_qrcode"> Generate QR Code<br>
-        <input type="radio" name="action" value="remove_background"> Remove Background<br>
-
-        <div id="imageUpload" style="display: none;">
-            <label for="image">Upload an image:</label>
-            <input type="file" name="image" id="image">
+    <div class="topbar">
+        <img src="../static/images/logo.JPG" width="80px" height="80px" alt="Log">
+        <p> NTU DAC Tool Box </p>
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/services">Services</a>
+            <a href="/contact">Contact</a>
         </div>
-
-        <div id="urlInput" style="display: none;">
-            <label for="url">Enter URL:</label>
-            <input type="text" name="url" id="url" placeholder="Enter URL">
+    </div>
+    <div class="flex-main">
+        <div class="main-text">
+            <h1>We provide two main functions</h1>
         </div>
-
-        <button type="submit">Process</button>
-    </form>
-
-    <script>
-        document.querySelectorAll('input[name="action"]').forEach(function (radio) {
-            radio.addEventListener('change', function () {
-                if (this.value === 'remove_background') {
-                    document.getElementById('imageUpload').style.display = 'block';
-                    document.getElementById('urlInput').style.display = 'none';
-                } else {
-                    document.getElementById('imageUpload').style.display = 'none';
-                    document.getElementById('urlInput').style.display = 'block';
-                }
-            });
-        });
-    </script>
+        <div class="container">
+            <div class="content">
+                <h2>Image Processing</h2>
+                <li>Remove the background from an image</li>
+                <li>Generate a QR code from URL</li>
+            </div>
+            <div class="vertical-line"></div>
+            <div class="content">
+                <h2>Auto Email Sender</h2>
+                <li>Member Recruiting</li>
+                <li>Director Recruiting</li>
+                <li>Corporate Visiting</li>
+            </div>
+        </div>
+    </div>
+    <div class="short-thick-line"></div>
+    <div class="bottom-text">
+        <p>© 2024 Abner Den</p>
+    </div>
 </body>
 
 </html>
