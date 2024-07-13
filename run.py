@@ -1,5 +1,7 @@
-from app import route
+import os
+from app.route import app
 
 
 if __name__ == "__main__":
-    route.app.run(debug=True)
+    app.config['ENV'] = os.getenv('FLASK_ENV', 'development') 
+    app.run(debug=app.config['ENV'] == 'development')

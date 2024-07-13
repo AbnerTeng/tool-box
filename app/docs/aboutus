@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NTU DAC Tool Box</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for_prefixed('static', filename='css/style.css') }}">
-    <script src="{{ url_for_prefixed('static', filename='js/scripts.js') }}" defer></script>
+    <link rel="stylesheet" type="text/css" href="/tool-box/static/css/style.css">
+    <script src="/tool-box/static/js/scripts.js" defer></script>
 </head>
 
 <body>
     <div class="topbar">
-        <img src="{{ url_for_prefixed('static', filename='images/logo.JPG') }}" width="80px" height="80px" alt="Log">
+        <img src="/tool-box/static/images/logo.JPG" width="80px" height="80px" alt="Log">
         <p> NTU DAC Tool Box </p>
         <div class="menu">
-            <a href="{{ url_for_prefixed('home') }}">Home</a>
-            <a href="{{ url_for_prefixed('about') }}">About</a>
-            <a href="{{ url_for_prefixed('services') }}">Services</a>
+            <a href="/tool-box/">Home</a>
+            <a href="/tool-box/aboutus">About</a>
+            <a href="/tool-box/services">Services</a>
         </div>
         <div class="logreg-container">
             <div>

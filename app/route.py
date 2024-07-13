@@ -8,7 +8,8 @@ from flask import (
     request,
     render_template,
     send_file,
-    send_from_directory
+    send_from_directory,
+    url_for
 )
 from scripts.rm_bg import Remover
 from scripts.heic2jpg import Converter
@@ -17,27 +18,30 @@ from scripts.email_sender_new.src.sender import AutoMailSender
 
 
 app = Flask(
-    __name__, template_folder= os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__), 'templates'
-        )
-    ),
-    static_folder=os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__), 'static'
-        )
-    )
+    __name__,
+    static_url_path='/tool-box/static',
+    static_folder='static',
+    template_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 )
-app.jinja_loader.searchpath.append(
-    os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__), '..'
-        )
-    )
-)
+
 DOWNLOAD_FOLDER = '~/Desktop' # TODO: need revise
+app.jinja_loader.searchpath.append(os.path.join(os.path.dirname(__file__), 'templates'))
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
+def prefix_url(url):
+    if app.config.get('ENV') == "production":
+        return f'/tool-box{url}'
+    return url
+
+def url_for_prefixed(endpoint, **values):
+    if endpoint == 'static':
+        filename = values.get('filename', '')
+        if filename:
+            return prefix_url(f'/static/{filename}')
+
+    return prefix_url(url_for(endpoint, **values))
+
+app.jinja_env.globals['url_for_prefixed'] = url_for_prefixed
 users = {
     'user1': {
         'password': 'password1'
@@ -83,7 +87,7 @@ def home():
 #         users[username] = {'password': password}
 #         return jsonify({'message': 'Sign up successful'})
 
-@app.route('/about')
+@app.route('/aboutus')
 def about():
     """
     About page
