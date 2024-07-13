@@ -16,7 +16,25 @@ from scripts.make_qr import QRCodeGenerator
 from scripts.email_sender_new.src.sender import AutoMailSender
 
 
-app = Flask(__name__)
+app = Flask(
+    __name__, template_folder= os.path.abspath(
+        os.path.join(
+            os.path.dirname(__file__), 'templates'
+        )
+    ),
+    static_folder=os.path.abspath(
+        os.path.join(
+            os.path.dirname(__file__), 'static'
+        )
+    )
+)
+app.jinja_loader.searchpath.append(
+    os.path.abspath(
+        os.path.join(
+            os.path.dirname(__file__), '..'
+        )
+    )
+)
 DOWNLOAD_FOLDER = '~/Desktop' # TODO: need revise
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
