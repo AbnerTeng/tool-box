@@ -17,66 +17,86 @@
             <a href="/">Home</a>
             <a href="/about">About</a>
             <a href="/services">Services</a>
-            <a href="/contact">Contact</a>
+        </div>
+        <div class="logreg-container">
+            <div>
+                <button class="log">Login</button>
+                <button class="reg">Sign up</button>
+            </div>
         </div>
     </div>
-    <div class="method">
-        <h1>QRCode Generator</h1>
-        <div class="input">
-            <form action="/generate_qrcode" method="post" enctype="multipart/form-data">
-                <div id="urlInput" style="display: true;">
-                    <label for="url" class="big-label">Enter URL:</label>
-                    <input type="text" name="url" id="url" class="big-input" placeholder="Enter URL">
-                </div>
-                <button type="submit" class="process-button">Process</button>
-            </form>
+    <div class="flex-main">
+        <div class="method">
+            <h1>QRCode Generator</h1>
+            <div class="input">
+                <form action="/generate_qrcode" method="post" enctype="multipart/form-data">
+                    <div id="urlInput" style="display: true;">
+                        <label for="url" class="big-label">Enter URL:</label>
+                        <input type="text" name="url" id="url" class="big-input" placeholder="Enter URL">
+                    </div>
+                    <button type="submit" class="process-button">Process</button>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="horizontal-line"></div>
-    <div class="method">
-        <h1>Background Remover</h1>
-        <div class="input">
-            <form action="/remove_background" method="post" enctype="multipart/form-data">
-                <div id="imageUpload" style="display: true;">
-                    <label for="image" class="big-label">Upload an image: </label>
-                    <input type="file" name="image" id="image" class="big-input" accept=".jpeg, .jpg, .png">
-                </div>
-                <button type="submit" class="process-button">Process</button>
-            </form>
+        <div class="horizontal-line"></div>
+        <div class="method">
+            <h1>Background Remover</h1>
+            <div class="input">
+                <form action="/remove_background" method="post" enctype="multipart/form-data">
+                    <div id="imageUpload" style="display: true;">
+                        <label for="image" class="big-label">Upload an image: </label>
+                        <input type="file" name="image" id="image" class="big-input" accept=".jpeg, .jpg, .png">
+                    </div>
+                    <button type="submit" class="process-button">Process</button>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="horizontal-line"></div>
-    <div class="method">
-        <h1>Auto Email Sender</h1>
-        <a href="/email_instructions">Click me for instructions</a>
-        <div class="input">
-            <form action="/send_email" method="post" enctype="multipart/form-data">
-                <div id="eventSelect">
-                    <label for="event" class="big-label">Select Event: </label>
-                    <select id="event" name="event" class="big-input">
-                        <option value="event1">Member Recruiting</option>
-                        <option value="event3">Director Recruting</option>
-                        <option value="event3">Corporate visits</option>
-                        <option value="event4">To be continue...</option>
-                    </select>
-                </div>
-                <br>
-                <div id="receiverUpload" style="display: true;">
-                    <label for="receiver" class="big-label">Upload the receiver list: </label>
-                    <input type="file" name="receiver" id="receiver" class="big-input" accept=".csv">
-                </div>
-                <br>
-                <div id="emailInput" style="display: true;">
-                    <label for="email" class="big-label">Enter Email: </label>
-                    <input type="text" name="email" id="email" class="big-input" placeholder="Enter Email">
-                </div>
-                <br>
-                <div id="passwordInput" style="display: true;">
-                    <label for="password" class="big-label">Enter Password: </label>
-                    <input type="password" name="password" id="password" class="big-input" placeholder="Enter Password">
-                </div>
-                <button type="submit" class="process-button">Send Email</button>
-            </form>
+        <div class="horizontal-line"></div>
+        <div class="method">
+            <h1>Auto Email Sender</h1>
+            <a href="/email_instructions">Click me for instructions</a>
+            <div class="input">
+                <form action="/send_email" method="post" enctype="multipart/form-data">
+                    <div id="eventSelect">
+                        <label for="event" class="big-label">Select Event: </label>
+                        <select id="event" name="event" class="big-input">
+                            <option value="event1">Member Recruiting</option>
+                            <option value="event3">Director Recruting</option>
+                            <option value="event3">Corporate Visiting</option>
+                            <option value="event4">To be continue...</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div id="receiverUpload" style="display: true;">
+                        <label for="receiver" class="big-label">Upload the receiver list: </label>
+                        <input type="file" name="receiver" id="receiver" class="big-input" accept=".csv">
+                    </div>
+                    <br>
+                    <div id="AdditionLink" style="display: true;">
+                        <label for="addlinks" class="big-label">Enter Additional Links: </label>
+                        <input type="text" name="addlinks" id="addlinks" class="big-input"
+                            placeholder="Enter Additional Links">
+                    </div>
+                    <br>
+                    <div id="subjectInput" style="display: true;">
+                        <label for="subject" class="big-label">Enter Mail Subject: </label>
+                        <input type="text" name="subject" id="subject" class="big-input"
+                            placeholder="Enter Mail Subject">
+                    </div>
+                    <br>
+                    <div id="emailInput" style="display: true;">
+                        <label for="email" class="big-label">Enter Email: </label>
+                        <input type="text" name="email" id="email" class="big-input" placeholder="Enter Email">
+                    </div>
+                    <br>
+                    <div id="passwordInput" style="display: true;">
+                        <label for="password" class="big-label">Enter Password: </label>
+                        <input type="password" name="password" id="password" class="big-input"
+                            placeholder="Enter Password">
+                    </div>
+                    <button type="submit" class="process-button">Send</button>
+                </form>
+            </div>
         </div>
     </div>
     <div class="short-thick-line"></div>

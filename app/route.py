@@ -11,13 +11,23 @@ from flask import (
     send_from_directory
 )
 from scripts.rm_bg import Remover
+from scripts.heic2jpg import Converter
 from scripts.make_qr import QRCodeGenerator
-from scripts.email_sender.src.sender import AutoMailSender
+from scripts.email_sender_new.src.sender import AutoMailSender
 
 
 app = Flask(__name__)
 DOWNLOAD_FOLDER = '~/Desktop' # TODO: need revise
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
+
+users = {
+    'user1': {
+        'password': 'password1'
+    },
+    'user2': {
+        'password': 'password2'
+    }
+}
 
 @app.route('/')
 def home():
@@ -26,6 +36,35 @@ def home():
     """
     return render_template('index.html')
 
+# @app.route('/login', methods=['POST'])
+# def login():
+#     """
+#     Login page
+#     """
+#     data = request.json
+#     username = data.get('username')
+#     password = data.get('password')
+
+#     if username in users and users[username]['password'] == password:
+#         return jsonify({'message': 'Login successful'})
+#     else:
+#         return jsonify({'message': 'Invalid username or password'}), 401
+
+# @app.route('/signup', methods=['POST'])
+# def signup():
+#     """
+#     Signup page
+#     """
+#     data = request.json
+#     username = data.get('username')
+#     password = data.get('password')
+
+#     if username in users:
+#         return jsonify({'message': 'Username already exists'}), 400
+#     else:
+#         users[username] = {'password': password}
+#         return jsonify({'message': 'Sign up successful'})
+
 @app.route('/about')
 def about():
     """
@@ -33,19 +72,26 @@ def about():
     """
     return render_template('about.html')
 
+@app.route('/login', methods=['GET'])
+def login_page():
+    """
+    Serve the login page
+    """
+    return render_template('login.html')
+
+@app.route('/signup', methods=['GET'])
+def signup_page():
+    """
+    Serve the signup page
+    """
+    return render_template('signup.html')
+
 @app.route('/services')
 def services():
     """
     Services page
     """
     return render_template('services.html')
-
-@app.route('/contact')
-def contact():
-    """
-    Contact page
-    """
-    return render_template('contact.html')
 
 @app.route('/email_instructions')
 def email_instructions():
@@ -75,6 +121,19 @@ def remove_background():
     logging.info("Temp file saved: %s", temp_file)
     return send_file(temp_file, as_attachment=True)
 
+@app.route('/heic2jpg', methods=['POST'])
+def heic2jpg():
+    """
+    Convert HEIC image to another image format
+    """
+    url = request.form['url']
+    converter = Converter(url)
+    output = converter.heic2jpg()
+    temp_file = os.path.join(app.config['DOWNLOAD_FOLDER'], 'download.png')
+    output.save(temp_file, "JPG", quality=95)
+    logging.info("Temp file saved: %s", temp_file)
+    return send_file(temp_file, as_attachment=True)
+
 @app.route('/generate_qrcode', methods=['POST'])
 def generate_qrcode():
     """
@@ -95,8 +154,10 @@ def send_email():
     """
     event = request.form['event']
     receiver_data = request.files['receiver']
+    link = request.form['link']
+    subject = request.form['subject']
     mail, passwords = request.form['email'], request.form['password']
-    mail_sender = AutoMailSender(event, receiver_data, mail, passwords)
-    date, __time__, name, mt_link, email = mail_sender.get_data()
-    mail_sender.send_mail(date, __time__, name, mt_link, email)
+    mail_sender = AutoMailSender(event, receiver_data, link, subject, mail, passwords)
+    infos = mail_sender.get_data()
+    mail_sender.send_mail(infos)
     logging.info("Email sent successfully")
