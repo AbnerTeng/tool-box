@@ -9,7 +9,8 @@ from flask import (
     render_template,
     send_file,
     send_from_directory,
-    url_for
+    url_for,
+    Response
 )
 from scripts.rm_bg import Remover
 from scripts.heic2jpg import Converter
@@ -22,6 +23,7 @@ app = Flask(
     static_folder='app/static',
     template_folder='.'
 )
+
 app.jinja_loader.searchpath.append('app/templates')
 DOWNLOAD_FOLDER = '~/Desktop' # TODO: need revise
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER

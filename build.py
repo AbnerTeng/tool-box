@@ -5,7 +5,7 @@ app.config['FREEZER_RELATIVE_URLS'] = True
 app.config['FREEZER_DESTINATION'] = 'docs'
 app.config['ENV'] = 'production'
 
-freezer = Freezer(app, with_static_files=True)
+freezer = Freezer(app)
 
 def url_generator():
     yield 'home'
