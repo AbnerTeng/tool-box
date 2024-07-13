@@ -19,13 +19,11 @@ from scripts.email_sender_new.src.sender import AutoMailSender
 
 app = Flask(
     __name__,
-    static_url_path='/tool-box/static',
-    static_folder='static',
-    template_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    static_folder='app/static',
+    template_folder='.'
 )
-
+app.jinja_loader.searchpath.append('app/templates')
 DOWNLOAD_FOLDER = '~/Desktop' # TODO: need revise
-app.jinja_loader.searchpath.append(os.path.join(os.path.dirname(__file__), 'templates'))
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
 def prefix_url(url):
@@ -87,7 +85,7 @@ def home():
 #         users[username] = {'password': password}
 #         return jsonify({'message': 'Sign up successful'})
 
-@app.route('/aboutus')
+@app.route('/about')
 def about():
     """
     About page
