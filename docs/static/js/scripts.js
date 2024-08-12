@@ -18,3 +18,6 @@ document.querySelectorAll('input[name="action"]').forEach(function (radio) {
         }
     });
 });
+
+const TinyMDE = require('tiny-markdown-editor');
+

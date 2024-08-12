@@ -12,7 +12,10 @@ def url_generator():
     yield 'login'
     yield 'signup'
     yield 'about'
-    yield 'services'
+    yield 'contact'
+    yield 'email_sender'
+    yield 'img_proc'
+    yield 'email_temp'
 
 if __name__ == '__main__':
     freezer.freeze()

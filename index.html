@@ -4,49 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NTU DAC Tool Box</title>
+    <title>Tool-Box</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for_prefixed('static', filename='css/style.css') }}">
 </head>
 
 <body>
     <div class="topbar">
-        <img src="{{ url_for_prefixed('static', filename='images/logo.JPG') }}" width="80px" height="80px" alt="Log">
-        <p> NTU DAC Tool Box </p>
-        <div class="menu">
-            <a href="{{ url_for_prefixed('home') }}">Home</a>
-            <a href="{{ url_for_prefixed('about') }}">About</a>
-            <a href="{{ url_for_prefixed('services') }}">Services</a>
+        <div class="topbar-content">
+            <p> Tool-Box </p>
+            <img src="{{ url_for_prefixed('static', filename='images/deep-learning.png') }}" width="60px" height="60px"
+                alt="Log">
+            <div class="menu">
+                <a href="{{ url_for_prefixed('home') }}" role="button">Home</a>
+                <div class="dropdown">
+                    <a class="dropbtn">Services</a>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for_prefixed('img_proc') }}">Image Processor</a>
+                        <a href="{{ url_for_prefixed('email_sender') }}">Auto Email Sender</a>
+                    </div>
+                </div>
+                <a href="{{ url_for_prefixed('about') }}" role="button">About</a>
+                <a href="{{ url_for_prefixed('contact') }}" role="button">Contact</a>
+            </div>
         </div>
-        <div class="logreg-container">
+        <!-- <div class="logreg-container">
             <div>
                 <button class="log" onclick="window.location.href='/login'">Login</button>
                 <button class="reg" onclick="window.location.href='/signup'">Sign up</button>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="flex-main">
         <div class="main-text">
-            <h1>We provide two main functions</h1>
+            <h1>Accelerate<br>
+                Your Productivity
+            </h1>
+            <p>
+                Frustrated by the repetitive tasks? Tool Box unlocks the potential of your efficiency of administrative
+                work.
+            </p>
+        </div>
+        <div class="horizontal-line"></div>
+        <div class="service-header">
+            <h1>Our Services</h1>
         </div>
         <div class="container">
-            <div class="content">
-                <h2>Image Processing</h2>
-                <li>Remove the background from an image</li>
-                <li>Generate a QR code from URL</li>
-                <li>.HEIC to .PNG</li>
+            <div class="content-service">
+                <h2>Say Goodbye to force signup websites</h2>
+                <p>
+                    Image processing utilities like generating QR code and removing background are now available
+                    without
+                    any signup. No more wasting time on force singup websites.
+                </p>
+                <div class="explore-container">
+                    <a class="explore" href="{{ url_for_prefixed('img_proc', _anchor='qrcode-gen') }}" role="button"
+                        tabindex="0">
+                        Explore Image Processor
+                    </a>
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14m-6-6l6 6-6 6" stroke="#1F9CDA" stroke-width="2" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
             </div>
-            <div class="vertical-line"></div>
-            <div class="content">
-                <h2>Auto Email Sender</h2>
-                <li>Member Recruiting</li>
-                <li>Director Recruiting</li>
-                <li>Corporate Visiting</li>
+            <div class="content-service">
+                <h2>Achieve FULL automation on operation</h2>
+                <p>
+                    The fully automation email sender can not only send large amount of emails at once, but also
+                    customize the content of each email by using Markdown-like syntax.
+                </p>
+                <div class="explore-container">
+                    <a class="explore" href="{{ url_for_prefixed('email_sender', _anchor='mail-sender') }}"
+                        role="button" tabindex="0">
+                        Explore Auto Email Sender
+                    </a>
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14m-6-6l6 6-6 6" stroke="#1F9CDA" stroke-width="2" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
     <div class="short-thick-line"></div>
     <div class="bottom-text">
-        <p>© 2024 Abner Den</p>
+        <p>© 2024 Tool-Box</p>
     </div>
 </body>
 

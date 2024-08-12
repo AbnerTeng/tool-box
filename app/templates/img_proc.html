@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool-Box</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for_prefixed('static', filename='css/style.css') }}">
+    <script src="{{ url_for_prefixed('static', filename='js/scripts.js') }}" defer></script>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="topbar-content">
+            <p>Tool-Box</p>
+            <img src="{{ url_for_prefixed('static', filename='images/deep-learning.png') }}" alt="Log">
+            <div class="menu">
+                <a href="{{ url_for_prefixed('home') }}" role="button">Home</a>
+                <div class="dropdown">
+                    <a href="{{ url_for_prefixed('img_proc') }}" class="dropbtn" role="button">Services</a>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for_prefixed('img_proc') }}">Image Processor</a>
+                        <a href="{{ url_for_prefixed('email_sender') }}">Auto Email Sender</a>
+                    </div>
+                </div>
+                <a href="{{ url_for_prefixed('about') }}" role="button">About</a>
+                <a href="{{ url_for_prefixed('contact') }}" role="button">Contact</a>
+            </div>
+        </div>
+        <!-- <div class="logreg-container">
+            <div>
+                <button class="log">Login</button>
+                <button class="reg">Sign up</button>
+            </div>
+        </div> -->
+    </div>
+    <div class="flex-position">
+        <section id="qrcode-gen">
+            <div class="service-header">
+                <h1>Image Processor</h1>
+            </div>
+            <div class="method">
+                <h1>QRCode Generator</h1>
+                <p>
+                    Generate QR codes online by entering your desired URL and clicking the "Process" button.
+                    It's a simple and quick way to create scannable codes for easy sharing and access.
+                </p>
+                <div class="input">
+                    <form action="/generate_qrcode" method="post" enctype="multipart/form-data">
+                        <div id="urlInput" style="display: true;">
+                            <label for="url" class="big-label">Enter URL:</label>
+                            <input type="text" name="url" id="url" class="big-input" placeholder="Enter URL">
+                        </div>
+                        <button type="submit" class="process-button">Process</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section id="bg-remove">
+            <div class="method">
+                <h1>Background Remover</h1>
+                <p>
+                    Quickly and easily remove backgrounds from images. Simply upload your image and click the "Process"
+                    button to get a clean, background-free result.
+                </p>
+                <div class="input">
+                    <form action="/remove_background" method="post" enctype="multipart/form-data">
+                        <div id="imageUpload" style="display: true;">
+                            <label for="image" class="big-label">Upload an image: </label>
+                            <input type="file" name="image" id="image" class="choose-input" accept=".jpeg, .jpg, .png">
+                        </div>
+                        <button type="submit" class="process-button">Process</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="short-thick-line"></div>
+    <div class="bottom-text">
+        <p>© 2024 Tool-Box</p>
+    </div>
+</body>

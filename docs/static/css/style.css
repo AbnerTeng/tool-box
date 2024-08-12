@@ -1,13 +1,30 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
 /* Style for topbar */
 .topbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #efeae6;
+    background-color: #f1f1f1;
+}
+
+.topbar-content {
     display: flex;
-    align-items: center;
-    z-index: 1000;
+    margin-left: 150px;
+    margin-right: 150px;
+    flex-direction: row;
+}
+
+.topbar img {
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 15px;
 }
 
 .topbar p {
@@ -15,35 +32,59 @@
     color: #07334b;
     text-align: left;
     font-weight: bold;
-    margin-left: 20px;
+    margin-right: 20px;
+}
+
+a {
+    color: #1F9CDA;
 }
 
 .menu {
     display: flex;
-    background-color: #efeae6;
+    background-color: #f1f1f1;
+    align-items: stretch;
     margin-left: auto;
-    margin-right: 40px;
 }
 
-.menu a {
-    margin-left: 20px;
+.menu>a,
+.menu>.dropdown {
+    padding: 20px;
     text-decoration: none;
     font-weight: bold;
-    color: #092734;
     font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    text-decoration: none;
+    color: #07334b;
+    background-color: #f1f1f1;
 }
 
 .flex-main {
-    margin: 0 auto;
     padding-top: 80px;
 }
 
 .main-text {
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
+    text-align: left;
+    margin-left: 150px;
     margin-top: 50px;
+    margin-bottom: 50px;
+    width: 40%;
     color: #07334b;
+}
+
+.main-text h1 {
+    font-size: 42px;
+    font-weight: bold;
+    color: #07334b;
+}
+
+.main-text p {
+    font-size: 18px;
+    color: #07334b;
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
 }
 
 .logreg-container {
@@ -60,7 +101,6 @@ button {
     border: 0;
     border-radius: 5px;
     font-weight: 600;
-    margin: 0 10px;
     width: 100px;
     padding: 10px 0;
     transition: 0.4s;
@@ -83,37 +123,87 @@ button:hover {
 
 .container {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: row;
     margin-top: 50px;
-}
-
-.vertical-line {
-    width: 5px;
-    background-color: lightgray;
-    height: 180px;
-    border-radius: 5px;
-}
-
-.content {
-    flex: 0 0 30%;
-    text-align: center;
-    height: 100px;
-    width: 50%;
+    margin-left: 100px;
+    margin-right: 100px;
     margin-bottom: 50px;
 }
 
-.content h2 {
+.service-header {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    box-sizing: border-box;
+}
+
+.service-header h1 {
     font-size: 30px;
     font-weight: bold;
     color: #07334b;
+}
+
+.service-header p {
+    text-align: center;
+    font-size: 18px;
+    color: #07334b;
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    width: 50%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.content-service {
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    box-sizing: border-box;
+}
+
+.content-service h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #07334b;
+}
+
+.content-service p {
+    text-align: left;
+    color: #07334b;
+}
+
+.explore-container {
+    display: flex;
+    align-items: center;
     text-align: center;
 }
 
-.content li {
+.explore {
+    display: center;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #1F9CDA;
+    transition: 0.4s;
+    align-items: center;
+    text-decoration: none;
     text-align: center;
-    color: #092734;
-    font-size: 20px;
+    margin-right: 8px;
+}
+
+.explore:hover {
+    opacity: 0.7;
+}
+
+.svg {
+    flex-shrink: 0;
 }
 
 .flex-position {
@@ -122,26 +212,18 @@ button:hover {
     align-items: center;
 }
 
-.title {
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    color: #07334b;
-    margin-top: 20px;
-
-}
-
 .flex-info {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .person {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    margin-left: 20px;
 }
 
 .person img {
@@ -151,7 +233,7 @@ button:hover {
     margin-left: 10px;
 }
 
-.person p {
+.person h3 {
     text-align: center;
     font-size: 20px;
     font-weight: bold;
@@ -159,9 +241,26 @@ button:hover {
     margin-left: 10px;
 }
 
+.person p {
+    text-align: center;
+    font-size: 16px;
+    color: gray;
+    margin-left: 10px;
+}
+
+.person img {
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.person img:hover {
+    opacity: 0.5;
+}
+
 .method {
-    margin-top: 20px;
-    margin-left: 20px;
+    width: 50%;
+    margin-top: 50px;
+    margin-left: 150px;
     margin-bottom: 50px;
 }
 
@@ -195,7 +294,7 @@ button:hover {
     display: flex;
     justify-content: left;
     align-items: left;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .big-label {
@@ -210,13 +309,31 @@ button:hover {
     height: 30px;
     margin-right: 10px;
     font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.choose-input {
+    width: 300px;
+    height: 30px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: none;
+}
+
+.select-input {
+    width: 300px;
+    height: 30px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .process-button {
     background-color: #07334b;
     border: none;
     color: white;
-    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -224,6 +341,7 @@ button:hover {
     cursor: pointer;
     border-radius: 5px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .bottom-text p {
@@ -256,7 +374,19 @@ button:hover {
 
 .instructions {
     margin-top: 20px;
-    margin-left: 20px;
+}
+
+.instructions h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #07334b;
+}
+
+.instructions p {
+    font-size: 16px;
+    color: #07334b;
+    margin-top: 20px;
+    line-height: 0.8;
 }
 
 .styled-table {
@@ -294,4 +424,102 @@ button:hover {
 .styled-table tbody tr.active-row {
     font-weight: bold;
     color: #009879;
+}
+
+.dropbtn {
+    font-size: 20px;
+    color: #07334b;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.dropbtn:hover {
+    opacity: 0.7;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropndown a {
+    text-align: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    text-align: center;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: #07334b;
+    padding: 12px 12px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 16px;
+    font-weight: lighter;
+    line-height: 1.5;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.contact {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #07334b;
+}
+
+.regular-input,
+.regular-select,
+textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #bbb;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
 }

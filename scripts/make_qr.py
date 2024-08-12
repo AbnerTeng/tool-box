@@ -1,5 +1,6 @@
 import qrcode
 
+
 class QRCodeGenerator:
     def __init__(self, content: str):
         self.content = content
@@ -10,9 +11,9 @@ class QRCodeGenerator:
             border=0
         )
 
-
     def get_qrcode(self):
         self.qr.add_data(self.content)
         self.qr.make(fit=True)
         image = self.qr.make_image(fill_color="black", back_color="white")
         return image
+

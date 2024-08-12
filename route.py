@@ -10,7 +10,7 @@ from flask import (
     send_file,
     send_from_directory,
     url_for,
-    Response
+    # Response
 )
 from scripts.rm_bg import Remover
 from scripts.heic2jpg import Converter
@@ -25,21 +25,29 @@ app = Flask(
 )
 
 app.jinja_loader.searchpath.append('app/templates')
-DOWNLOAD_FOLDER = '~/Desktop' # TODO: need revise
+DOWNLOAD_FOLDER = '~/Desktop'   # TODO: need revise
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
-def prefix_url(url):
+
+def prefix_url(url: str) -> str:
+    """
+    Prefix the URL with the app's base url
+    """
     if app.config.get('ENV') == "production":
         return f'/tool-box{url}'
     return url
 
-def url_for_prefixed(endpoint, **values):
+def url_for_prefixed(endpoint, **values) -> str:
+    """
+    Generate a URL for the given endpoint
+    """
     if endpoint == 'static':
         filename = values.get('filename', '')
         if filename:
             return prefix_url(f'/static/{filename}')
 
     return prefix_url(url_for(endpoint, **values))
+
 
 app.jinja_env.globals['url_for_prefixed'] = url_for_prefixed
 users = {
@@ -94,12 +102,14 @@ def about():
     """
     return render_template('about.html')
 
+
 @app.route('/login', methods=['GET'])
 def login_page():
     """
     Serve the login page
     """
     return render_template('login.html')
+
 
 @app.route('/signup', methods=['GET'])
 def signup_page():
@@ -108,19 +118,38 @@ def signup_page():
     """
     return render_template('signup.html')
 
-@app.route('/services')
-def services():
-    """
-    Services page
-    """
-    return render_template('services.html')
 
-@app.route('/email_instructions')
-def email_instructions():
+@app.route('/img_proc')
+def img_proc():
     """
-    Email instructions page
+    Image processing page
     """
-    return render_template('email_instructions.html')
+    return render_template('img_proc.html')
+
+
+@app.route('/email_sender')
+def email_sender():
+    """
+    Email sender page
+    """
+    return render_template('email_sender.html')
+
+
+@app.route('/email_temp')
+def email_temp():
+    """
+    Email template page
+    """
+    return render_template('email_temp.html')
+
+
+@app.route('/contact')
+def contact():
+    """
+    Contact page
+    """
+    return render_template('contact.html')
+
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
@@ -143,6 +172,7 @@ def remove_background():
     logging.info("Temp file saved: %s", temp_file)
     return send_file(temp_file, as_attachment=True)
 
+
 @app.route('/heic2jpg', methods=['POST'])
 def heic2jpg():
     """
@@ -155,6 +185,7 @@ def heic2jpg():
     output.save(temp_file, "JPG", quality=95)
     logging.info("Temp file saved: %s", temp_file)
     return send_file(temp_file, as_attachment=True)
+
 
 @app.route('/generate_qrcode', methods=['POST'])
 def generate_qrcode():
@@ -169,6 +200,7 @@ def generate_qrcode():
     logging.info("Temp file saved: %s", temp_file)
     return send_file(temp_file, as_attachment=True)
 
+
 @app.route('/send_email', methods=['POST'])
 def send_email():
     """
@@ -179,7 +211,14 @@ def send_email():
     link = request.form['link']
     subject = request.form['subject']
     mail, passwords = request.form['email'], request.form['password']
-    mail_sender = AutoMailSender(event, receiver_data, link, subject, mail, passwords)
+    mail_sender = AutoMailSender(
+        event,
+        receiver_data,
+        link,
+        subject,
+        mail,
+        passwords
+    )
     infos = mail_sender.get_data()
     mail_sender.send_mail(infos)
     logging.info("Email sent successfully")
