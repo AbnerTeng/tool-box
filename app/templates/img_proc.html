@@ -12,8 +12,10 @@
 <body>
     <div class="topbar">
         <div class="topbar-content">
-            <p>Tool-Box</p>
-            <img src="{{ url_for_prefixed('static', filename='images/deep-learning.png') }}" alt="Log">
+            <div class="topbar-left">
+                <p>Tool-Box</p>
+                <img src="{{ url_for_prefixed('static', filename='images/deep-learning.png') }}" alt="Log">
+            </div>
             <div class="menu">
                 <a href="{{ url_for_prefixed('home') }}" role="button">Home</a>
                 <div class="dropdown">
@@ -49,7 +51,7 @@
                     <form action="/generate_qrcode" method="post" enctype="multipart/form-data">
                         <div id="urlInput" style="display: true;">
                             <label for="url" class="big-label">Enter URL:</label>
-                            <input type="text" name="url" id="url" class="big-input" placeholder="Enter URL">
+                            <input type="text" name="url" id="url" class="regular-input" placeholder="Enter URL">
                         </div>
                         <button type="submit" class="process-button">Process</button>
                     </form>
@@ -65,6 +67,24 @@
                 </p>
                 <div class="input">
                     <form action="/remove_background" method="post" enctype="multipart/form-data">
+                        <div id="imageUpload" style="display: true;">
+                            <label for="image" class="big-label">Upload an image: </label>
+                            <input type="file" name="image" id="image" class="choose-input" accept=".jpeg, .jpg, .png">
+                        </div>
+                        <button type="submit" class="process-button">Process</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section id="heic2jpg">
+            <div class="method">
+                <h1>.HEIC to .jpg</h1>
+                <p>
+                    Quickly and easily transfer .HEIC type .jpg from images. Simply upload your image and click the
+                    "Process" button to get a converted .jpg file.
+                </p>
+                <div class="input">
+                    <form action="/heic2jpg" method="post" enctype="multipart/form-data">
                         <div id="imageUpload" style="display: true;">
                             <label for="image" class="big-label">Upload an image: </label>
                             <input type="file" name="image" id="image" class="choose-input" accept=".jpeg, .jpg, .png">

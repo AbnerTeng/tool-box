@@ -3,6 +3,7 @@ Main route file
 """
 import os
 import logging
+import tempfile
 from flask import (
     Flask,
     request,
@@ -25,8 +26,8 @@ app = Flask(
 )
 
 app.jinja_loader.searchpath.append('app/templates')
-DOWNLOAD_FOLDER = '~/Desktop'   # TODO: need revise
-app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
+# DOWNLOAD_FOLDER = '~/Desktop'
+# app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
 
 def prefix_url(url: str) -> str:
@@ -95,7 +96,7 @@ def home():
 #         users[username] = {'password': password}
 #         return jsonify({'message': 'Sign up successful'})
 
-@app.route('/about')
+@app.route('/about_us.html')
 def about():
     """
     About page
@@ -103,7 +104,7 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/login', methods=['GET'])
+@app.route('/log_in.html', methods=['GET'])
 def login_page():
     """
     Serve the login page
@@ -111,7 +112,7 @@ def login_page():
     return render_template('login.html')
 
 
-@app.route('/signup', methods=['GET'])
+@app.route('/sign_up.html', methods=['GET'])
 def signup_page():
     """
     Serve the signup page
@@ -119,7 +120,7 @@ def signup_page():
     return render_template('signup.html')
 
 
-@app.route('/img_proc')
+@app.route('/service1.html')
 def img_proc():
     """
     Image processing page
@@ -127,7 +128,7 @@ def img_proc():
     return render_template('img_proc.html')
 
 
-@app.route('/email_sender')
+@app.route('/service2.html')
 def email_sender():
     """
     Email sender page
@@ -135,7 +136,7 @@ def email_sender():
     return render_template('email_sender.html')
 
 
-@app.route('/email_temp')
+@app.route('/service2_templates.html')
 def email_temp():
     """
     Email template page
@@ -143,7 +144,7 @@ def email_temp():
     return render_template('email_temp.html')
 
 
-@app.route('/contact')
+@app.route('/contact_us.html')
 def contact():
     """
     Contact page
@@ -164,13 +165,34 @@ def remove_background():
     """
     Upload image and remove background
     """
-    image_file = request.files['image']
-    remover = Remover(image_file)
-    output = remover.remove_bg()
-    temp_file = os.path.join(app.config['DOWNLOAD_FOLDER'], 'download.png')
-    output.save(temp_file)
-    logging.info("Temp file saved: %s", temp_file)
-    return send_file(temp_file, as_attachment=True)
+    try:
+        image_file = request.files['image']
+        remover = Remover(image_file)
+        output = remover.remove_bg()
+
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
+            temp_filename = temp_file.name
+            output.save(temp_filename)
+            logging.info("Temp file saved: %s", temp_filename)
+
+        return send_file(
+            temp_filename,
+            as_attachment=True,
+            download_name="background_removed.png",
+        ), 200
+
+    except ValueError:
+        logging.error("Error removing background: %s", ValueError)
+        return "Error removing background", 500
+
+    finally:
+        if 'temp_filename' in locals():
+            try:
+                os.remove(temp_filename)
+                logging.info("Temp file removed: %s", temp_filename)
+
+            except ValueError:
+                logging.error("Error removing temp file: %s", ValueError)
 
 
 @app.route('/heic2jpg', methods=['POST'])
@@ -178,13 +200,34 @@ def heic2jpg():
     """
     Convert HEIC image to another image format
     """
-    url = request.form['url']
-    converter = Converter(url)
-    output = converter.heic2jpg()
-    temp_file = os.path.join(app.config['DOWNLOAD_FOLDER'], 'download.png')
-    output.save(temp_file, "JPG", quality=95)
-    logging.info("Temp file saved: %s", temp_file)
-    return send_file(temp_file, as_attachment=True)
+    try:
+        url = request.form['url']
+        converter = Converter(url)
+        output = converter.heic2jpg()
+
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
+            temp_filename = temp_file.name
+            output.save(temp_filename)
+            logging.info("Temp file saved: %s", temp_filename)
+
+        return send_file(
+            temp_filename,
+            as_attachment=True,
+            download_name="converted.jpg",
+        ), 200
+
+    except ValueError:
+        logging.error("Error converting image: %s", ValueError)
+        return "Error converting image", 500
+
+    finally:
+        if 'temp_filename' in locals():
+            try:
+                os.remove(temp_filename)
+                logging.info("Temp file removed: %s", temp_filename)
+
+            except ValueError:
+                logging.error("Error removing temp file: %s", ValueError)
 
 
 @app.route('/generate_qrcode', methods=['POST'])
@@ -192,13 +235,34 @@ def generate_qrcode():
     """
     Generate QR code based on the input URL
     """
-    url = request.form['url']
-    generator = QRCodeGenerator(url)
-    output = generator.get_qrcode()
-    temp_file = os.path.join(app.config['DOWNLOAD_FOLDER'], 'download.png')
-    output.save(temp_file)
-    logging.info("Temp file saved: %s", temp_file)
-    return send_file(temp_file, as_attachment=True)
+    try:
+        url = request.form['url']
+        generator = QRCodeGenerator(url)
+        output = generator.get_qrcode()
+
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
+            temp_filename = temp_file.name
+            output.save(temp_filename)
+            logging.info("Temp file saved: %s", temp_filename)
+
+        return send_file(
+            temp_filename,
+            as_attachment=True,
+            download_name="qrcode.png",
+        ), 200
+
+    except ValueError:
+        logging.error("Error generating QR code: %s", ValueError)
+        return "Error generating QR code", 500
+
+    finally:
+        if 'temp_filename' in locals():
+            try:
+                os.remove(temp_filename)
+                logging.info("Temp file removed: %s", temp_filename)
+
+            except ValueError:
+                logging.error("Error removing temp file: %s", ValueError)
 
 
 @app.route('/send_email', methods=['POST'])

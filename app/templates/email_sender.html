@@ -12,9 +12,10 @@
 <body>
     <div class="topbar">
         <div class="topbar-content">
-            <p>Tool-Box</p>
-            <img src="{{ url_for_prefixed('static', filename='images/deep-learning.png') }}" width="60px" height="60px"
-                alt="Log">
+            <div class="topbar-left">
+                <p>Tool-Box</p>
+                <img src="{{ url_for_prefixed('static', filename='images/deep-learning.png') }}" alt="Log">
+            </div>
             <div class="menu">
                 <a href="{{ url_for_prefixed('home') }}" role="button">Home</a>
                 <div class="dropdown">
@@ -99,7 +100,7 @@
                         </a>
                         )
                     </p>
-                    <div class="explore-container">
+                    <div class="explore-temp-container">
                         <a class="explore" href="{{ url_for_prefixed('email_temp') }}" role="button"
                             tabindex="0">Template
                             Review</a>
@@ -113,7 +114,8 @@
                     <form action="/send_email" method="post" enctype="multipart/form-data">
                         <div id="eventSelect">
                             <label for="event" class="big-label">Select Event: </label>
-                            <select id="event" name="event" class="select-input">
+                            <select id="event" name="event" class="regular-select">
+                                <option value="">Select an event</option>
                                 <option value="event1">Member Recruiting</option>
                                 <option value="event3">Director Recruting</option>
                                 <option value="event3">Corporate Visiting</option>
@@ -128,24 +130,24 @@
                         <br>
                         <div id="AdditionLink" style="display: true;">
                             <label for="addlinks" class="big-label">Enter Additional Links: </label>
-                            <input type="text" name="addlinks" id="addlinks" class="big-input"
+                            <input type="text" name="addlinks" id="addlinks" class="regular-input"
                                 placeholder="Enter Additional Links">
                         </div>
                         <br>
                         <div id="subjectInput" style="display: true;">
                             <label for="subject" class="big-label">Enter Mail Subject: </label>
-                            <input type="text" name="subject" id="subject" class="big-input"
+                            <input type="text" name="subject" id="subject" class="regular-input"
                                 placeholder="Enter Mail Subject">
                         </div>
                         <br>
                         <div id="emailInput" style="display: true;">
                             <label for="email" class="big-label">Enter Email: </label>
-                            <input type="text" name="email" id="email" class="big-input" placeholder="Enter Email">
+                            <input type="text" name="email" id="email" class="regular-input" placeholder="Enter Email">
                         </div>
                         <br>
                         <div id="passwordInput" style="display: true;">
                             <label for="password" class="big-label">Enter Password: </label>
-                            <input type="password" name="password" id="password" class="big-input"
+                            <input type="password" name="password" id="password" class="regular-input"
                                 placeholder="Enter Password">
                         </div>
                         <button type="submit" class="process-button">Send</button>

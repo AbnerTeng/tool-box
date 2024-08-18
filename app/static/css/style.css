@@ -10,6 +10,7 @@ body {
     left: 0;
     width: 100%;
     background-color: #f1f1f1;
+    z-index: 1000;
 }
 
 .topbar-content {
@@ -17,14 +18,15 @@ body {
     margin-left: 150px;
     margin-right: 150px;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
 }
 
 .topbar img {
     width: 60px;
     height: 60px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 15px;
+    margin: 15px 20px;
 }
 
 .topbar p {
@@ -37,27 +39,34 @@ body {
 
 a {
     color: #1F9CDA;
+    text-decoration: none;
+}
+
+.topbar-left {
+    display: flex;
 }
 
 .menu {
     display: flex;
-    background-color: #f1f1f1;
-    align-items: stretch;
+    /* background-color: #f1f1f1; */
+    align-items: center;
     margin-left: auto;
 }
 
 .menu>a,
 .menu>.dropdown {
-    padding: 20px;
-    text-decoration: none;
+    padding: 10px 20px;
     font-weight: bold;
     font-size: 20px;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    text-decoration: none;
+    text-align: center;
     color: #07334b;
     background-color: #f1f1f1;
+    transition: background-color 0.3s;
+}
+
+.menu>a:hover,
+.menu>.dropdown:hover {
+    background-color: #e0e0e0;
 }
 
 .flex-main {
@@ -66,9 +75,7 @@ a {
 
 .main-text {
     text-align: left;
-    margin-left: 150px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin: 50px 150px;
     width: 40%;
     color: #07334b;
 }
@@ -124,18 +131,14 @@ button:hover {
 .container {
     display: flex;
     flex-direction: row;
-    margin-top: 50px;
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-bottom: 50px;
+    justify-content: center;
+    margin: 50px 150px;
 }
 
 .service-header {
     text-align: center;
-    height: 100%;
     width: 100%;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin: 50px auto;
     box-sizing: border-box;
 }
 
@@ -159,34 +162,42 @@ button:hover {
 
 .content-service {
     text-align: center;
-    height: 100%;
-    width: 50%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
+    width: 80%;
+    max-width: 600px;
+    margin: 30px 30px;
     box-sizing: border-box;
 }
 
 .content-service h2 {
-    font-size: 30px;
+    font-size: 26px;
     font-weight: bold;
     color: #07334b;
 }
 
-.content-service p {
+.content-service p,
+.method p {
     text-align: left;
     color: #07334b;
 }
 
 .explore-container {
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
+    margin-top: 20px;
+}
+
+.explore-temp-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .explore {
-    display: center;
+    display: inline-flex;
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -195,7 +206,7 @@ button:hover {
     align-items: center;
     text-decoration: none;
     text-align: center;
-    margin-right: 8px;
+    margin: 4px 4px;
 }
 
 .explore:hover {
@@ -215,25 +226,77 @@ button:hover {
 .flex-info {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 50px;
+    flex-direction: row;
+    width: 100%;
+    padding: 20px;
 }
 
 .person {
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    margin-left: 20px;
+    flex-direction: column;
 }
 
-.person img {
-    width: 150px;
-    height: 150px;
+.person-img {
+    position: relative;
+    margin: 20px;
+    width: 200px;
+    text-align: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.person-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
-.person h3 {
+.icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.icon-button img {
+    width: 50px;
+    height: 50px;
+}
+
+.person-img:hover .overlay {
+    opacity: 1;
+}
+
+.linkedin-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.person-info {
+    position: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.person-info h3 {
     text-align: center;
     font-size: 20px;
     font-weight: bold;
@@ -241,20 +304,11 @@ button:hover {
     margin-left: 10px;
 }
 
-.person p {
+.person-info p {
     text-align: center;
     font-size: 16px;
     color: gray;
     margin-left: 10px;
-}
-
-.person img {
-    border-radius: 50%;
-    transition: 0.4s;
-}
-
-.person img:hover {
-    opacity: 0.5;
 }
 
 .method {
@@ -269,6 +323,7 @@ button:hover {
     font-weight: bold;
     color: #07334b;
 }
+
 
 .horizontal-line {
     justify-content: center;
@@ -322,12 +377,12 @@ button:hover {
 }
 
 .select-input {
-    width: 300px;
-    height: 30px;
-    margin-right: 10px;
-    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 14px;
+    margin-right: 10px;
 }
 
 .process-button {
@@ -386,7 +441,7 @@ button:hover {
     font-size: 16px;
     color: #07334b;
     margin-top: 20px;
-    line-height: 0.8;
+    line-height: 1.2;
 }
 
 .styled-table {
@@ -522,4 +577,156 @@ textarea::placeholder {
 textarea {
     resize: vertical;
     min-height: 100px;
+}
+
+/* RWD part */
+@media screen and (max-width: 768px) {
+    .topbar-content {
+        margin-left: 20px;
+        margin-right: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topbar img {
+        margin: 10px 0;
+    }
+
+    .menu {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .menu>a,
+    .menu>.dropdown {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .flex-main {
+        padding-top: 120px;
+    }
+
+    .main-text {
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 100%;
+    }
+
+    .main-text h1 {
+        font-size: 32px;
+    }
+
+    .main-text p {
+        font-size: 16px;
+    }
+
+    .dropbtn {
+        font-size: 18px;
+    }
+
+    .service-header h1 {
+        font-size: 24px;
+    }
+
+    .service-header p {
+        width: 90%;
+        font-size: 16px;
+    }
+
+    .container {
+        margin: 50px 20px;
+        flex-direction: column;
+    }
+
+    .content-service {
+        width: 100%;
+        margin: 10px 10px;
+    }
+
+    .content-service h2 {
+        font-size: 20px;
+    }
+
+    .explore-container {
+        flex-direction: row;
+        margin-top: 10px;
+    }
+
+    .explore {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .flex-position {
+        padding-top: 120px;
+    }
+
+    .method {
+        margin: 50px 20px;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .topbar-content {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .topbar p {
+        font-size: 24px;
+    }
+
+    .menu>a,
+    .menu>.dropdown {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .flex-main {
+        padding-top: 120px;
+    }
+
+    .main-text h1 {
+        font-size: 28px;
+    }
+
+    .main-text p {
+        font-size: 14px;
+    }
+
+    .dropbtn {
+        font-size: 18px;
+    }
+
+    .service-header h1 {
+        font-size: 20px;
+    }
+
+    .service-header p {
+        font-size: 14px;
+    }
+
+    .content-service h2 {
+        font-size: 18px;
+    }
+
+    .content-service {
+        width: 100%;
+    }
+
+    .explore {
+        font-size: 14px;
+        margin-right: 0;
+    }
+
+    .flex-position {
+        padding-top: 120px;
+    }
+
+    .method {
+        margin: 50px 10px;
+        width: 80%;
+    }
 }
