@@ -235,6 +235,7 @@ def generate_qrcode():
     """
     Generate QR code based on the input URL
     """
+    logging.info("Request method: %s", request.method)
     try:
         url = request.form['url']
         generator = QRCodeGenerator(url)

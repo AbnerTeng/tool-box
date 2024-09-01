@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool-Box</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for_prefixed('static', filename='css/style.css') }}">
+    <script src="{{ url_for_prefixed('static', filename='js/scripts.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="topbar-content">
+            <div class="topbar-left">
+                <p>Tool-Box</p>
+                <img src="{{ url_for_prefixed('static', filename='images/deep-learning.png') }}" alt="Log">
+            </div>
+            <div class="menu">
+                <a href="{{ url_for_prefixed('home') }}" role="button">Home</a>
+                <div class="dropdown">
+                    <a href="{{ url_for_prefixed('img_proc') }}" class="dropbtn" role="button">Services</a>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for_prefixed('img_proc') }}">Image Processor</a>
+                        <a href="{{ url_for_prefixed('email_sender') }}">Auto Email Sender</a>
+                    </div>
+                </div>
+                <a href="{{ url_for_prefixed('about') }}" role="button">About</a>
+                <a href="{{ url_for_prefixed('contact') }}" role="button">Contact</a>
+            </div>
+        </div>
+        <!-- <div class="logreg-container">
+                    <div>
+                        <button class="log">Login</button>
+                        <button class="reg">Sign up</button>
+                    </div>
+                </div> -->
+    </div>
+    <div class="flex-position">
+        <div class="service-header">
+            <h1>Template Preview</h1>
+        </div>
+        <div class="tabs">
+            <div class="tab active">Member Recruiting</div>
+            <div class="tab">Director Recruiting</div>
+            <div class="tab">Corporate Visiting</div>
+        </div>
+        <div class="carousel">
+            <button class="carousel-control prev">&lt;</button>
+            <div class="carousel-md">
+                <div id="content-display">
+                    <p>Temp</p>
+                </div>
+            </div>
+            <button class="carousel-control next">&gt;</button>
+        </div>
+        <div class="markdown-input">
+            <div class="toolbar">
+                <button class="toolbar-btn" data-md="**" title="Bold"><b>B</b></button>
+                <button class="toolbar-btn" data-md="*" title="Italic"><i>I</i></button>
+                <button class="toolbar-btn" data-md="#" title="Heading">H1</button>
+                <button class="toolbar-btn" data-md="##" title="Subheading">H2</button>
+                <button class="toolbar-btn" data-md="###" title="Subheading">H3</button>
+                <button class="toolbar-btn" data-md="- " title="List">List</button>
+                <button class="toolbar-btn" data-md="[Link](url)" title="URL">Link</button>
+                <button class="toolbar-btn" data-md="`" title="Inline Code">Code</button>
+                <button class="toolbar-btn" data-md="```\n" title="Code Block">Code Block</button>
+            </div>
+            <div class="editor-area">
+                <textarea id="markdown-editor" rows="10" cols="50" placeholder="Type your markdown here"></textarea>
+                <div id="markdown-preview" class="markdown-preview"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

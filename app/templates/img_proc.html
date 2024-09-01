@@ -48,7 +48,7 @@
                     It's a simple and quick way to create scannable codes for easy sharing and access.
                 </p>
                 <div class="input">
-                    <form action="/generate_qrcode" method="post" enctype="multipart/form-data">
+                    <form id="qrForm" action="/generate_qrcode" method="post" enctype="multipart/form-data">
                         <div id="urlInput" style="display: true;">
                             <label for="url" class="big-label">Enter URL:</label>
                             <input type="text" name="url" id="url" class="regular-input" placeholder="Enter URL">
