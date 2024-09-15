@@ -5,28 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tool-Box</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for_prefixed('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for_prefixed(request, 'static', filename='css/style.css') }}">
 </head>
 
 <body>
     <div class="topbar">
         <div class="topbar-content">
             <div class="topbar-left">
-                <a href="{{ url_for_prefixed('home') }}" role="button">Tool-Box</a>
-                <img src="{{ url_for_prefixed('static', filename='images/deep-learning.png') }}" width="60px"
+                <a href="{{ url_for_prefixed(request, 'home') }}" role="button">Tool-Box</a>
+                <img src="{{ url_for_prefixed(request, 'static', filename='images/deep-learning.png') }}" width="60px"
                     height="60px" alt="Log">
             </div>
             <div class="menu">
-                <a href="{{ url_for_prefixed('home') }}" role="button">Home</a>
+                <a href="{{ url_for_prefixed(request, 'home') }}" role="button">Home</a>
                 <div class="dropdown">
                     <a class="dropbtn">Services</a>
                     <div class="dropdown-content">
-                        <a href="{{ url_for_prefixed('img_proc') }}">Image Processor</a>
-                        <a href="{{ url_for_prefixed('email_sender') }}">Auto Email Sender</a>
+                        <a href="{{ url_for_prefixed(request, 'img_proc') }}">Image Processor</a>
+                        <a href="{{ url_for_prefixed(request, 'email_sender') }}">Auto Email Sender</a>
                     </div>
                 </div>
-                <a href="{{ url_for_prefixed('about') }}" role="button">About</a>
-                <a href="{{ url_for_prefixed('contact') }}" role="button">Contact</a>
+                <a href="{{ url_for_prefixed(request, 'about') }}" role="button">About</a>
+                <a href="{{ url_for_prefixed(request, 'contact') }}" role="button">Contact</a>
             </div>
         </div>
         <!-- <div class="logreg-container">
@@ -59,8 +59,7 @@
                     any signup. No more wasting time on force singup websites.
                 </p>
                 <div class="explore-container">
-                    <a class="explore" href="{{ url_for_prefixed('img_proc', _anchor='qrcode-gen') }}" role="button"
-                        tabindex="0">
+                    <a class="explore" href="{{ url_for_prefixed(request, 'img_proc') }}" role="button" tabindex="0">
                         Explore Image Processor
                     </a>
                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -76,8 +75,8 @@
                     customize the content of each email by using Markdown-like syntax.
                 </p>
                 <div class="explore-container">
-                    <a class="explore" href="{{ url_for_prefixed('email_sender', _anchor='mail-sender') }}"
-                        role="button" tabindex="0">
+                    <a class="explore" href="{{ url_for_prefixed(request, 'email_sender') }}" role="button"
+                        tabindex="0">
                         Explore Auto Email Sender
                     </a>
                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

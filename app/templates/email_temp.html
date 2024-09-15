@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tool-Box</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for_prefixed('static', filename='css/style.css') }}">
-    <script src="{{ url_for_prefixed('static', filename='js/scripts.js') }}" defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for_prefixed(request, 'static', filename='css/style.css') }}">
+    <script src="{{ url_for_prefixed(request, 'static', filename='js/scripts.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
@@ -14,20 +14,20 @@
     <div class="topbar">
         <div class="topbar-content">
             <div class="topbar-left">
-                <a href="{{ url_for_prefixed('home') }}" role="button">Tool-Box</a>
-                <img src="{{ url_for_prefixed('static', filename='images/deep-learning.png') }}" alt="Log">
+                <a href="{{ url_for_prefixed(request, 'home') }}" role="button">Tool-Box</a>
+                <img src="{{ url_for_prefixed(request, 'static', filename='images/deep-learning.png') }}" alt="Log">
             </div>
             <div class="menu">
-                <a href="{{ url_for_prefixed('home') }}" role="button">Home</a>
+                <a href="{{ url_for_prefixed(request, 'home') }}" role="button">Home</a>
                 <div class="dropdown">
-                    <a href="{{ url_for_prefixed('img_proc') }}" class="dropbtn" role="button">Services</a>
+                    <a href="{{ url_for_prefixed(request, 'img_proc') }}" class="dropbtn" role="button">Services</a>
                     <div class="dropdown-content">
-                        <a href="{{ url_for_prefixed('img_proc') }}">Image Processor</a>
-                        <a href="{{ url_for_prefixed('email_sender') }}">Auto Email Sender</a>
+                        <a href="{{ url_for_prefixed(request, 'img_proc') }}">Image Processor</a>
+                        <a href="{{ url_for_prefixed(request, 'email_sender') }}">Auto Email Sender</a>
                     </div>
                 </div>
-                <a href="{{ url_for_prefixed('about') }}" role="button">About</a>
-                <a href="{{ url_for_prefixed('contact') }}" role="button">Contact</a>
+                <a href="{{ url_for_prefixed(request, 'about') }}" role="button">About</a>
+                <a href="{{ url_for_prefixed(request, 'contact') }}" role="button">Contact</a>
             </div>
         </div>
         <!-- <div class="logreg-container">
