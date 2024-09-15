@@ -16,7 +16,7 @@ from fastapi import (
 )
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
+from pydantic import AnyUrl, BaseModel
 from .api.rm_bg import Remover
 from .api.heic2jpg import Converter
 from .api.make_qr import QRCodeGenerator
@@ -73,6 +73,13 @@ class EmailRequest(BaseModel):
     password: str = Form(...)
 
 
+class URLRequest(BaseModel):
+    """
+    URL request model
+    """
+    url: AnyUrl = Form(...)
+
+
 @app.get("/home", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
@@ -118,6 +125,7 @@ async def remove_background(image: UploadFile = File(...)):
     """
     Upload image and remove background
     """
+    temp_filename = None
     try:
         remover = Remover(image.file)
         output = remover.remove_bg()
@@ -137,23 +145,14 @@ async def remove_background(image: UploadFile = File(...)):
         logging.error("Error removing background: %s", str(e))
         return HTTPException(status_code=500, detail="Error removing background")
 
-    finally:
-        if 'temp_filename' in locals():
-            try:
-                os.remove(temp_filename)
-                logging.info("Temp file removed: %s", temp_filename)
-
-            except ValueError:
-                logging.error("Error removing temp file: %s", ValueError)
-
 
 @app.post('/heic2jpg')
-async def heic2jpg(url: str = Form(...)):  # Need to transfer to UploadFile
+async def heic2jpg(image: UploadFile = File(...)):
     """
     Convert HEIC image to another image format
     """
     try:
-        converter = Converter(url)
+        converter = Converter(image.file)
         output = converter.heic2jpg()
 
         with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
@@ -171,23 +170,15 @@ async def heic2jpg(url: str = Form(...)):  # Need to transfer to UploadFile
         logging.error("Error converting image: %s", str(e))
         return HTTPException(status_code=500, detail="Error converting image")
 
-    finally:
-        if 'temp_filename' in locals():
-            try:
-                os.remove(temp_filename)
-                logging.info("Temp file removed: %s", temp_filename)
-
-            except ValueError:
-                logging.error("Error removing temp file: %s", ValueError)
-
 
 @app.post('/generate_qrcode')
-async def generate_qrcode(url: str = Form(...)):
+async def generate_qrcode(request: URLRequest):
     """
     Generate QR code based on the input URL
     """
+    temp_filename = None
     try:
-        generator = QRCodeGenerator(url)
+        generator = QRCodeGenerator(**request.dict())
         output = generator.get_qrcode()
 
         with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
@@ -205,15 +196,6 @@ async def generate_qrcode(url: str = Form(...)):
         logging.error("Error generating QR code: %s", str(e))
         return HTTPException(status_code=500, detail="Error generating QR code")
 
-    finally:
-        if 'temp_filename' in locals():
-            try:
-                os.remove(temp_filename)
-                logging.info("Temp file removed: %s", temp_filename)
-
-            except ValueError:
-                logging.error("Error removing temp file: %s", ValueError)
-
 
 @app.post('/send_email')
 def send_email(request: EmailRequest):
@@ -226,6 +208,7 @@ def send_email(request: EmailRequest):
         mail_sender.send_mail(infos)
         logging.info("Email sent successfully")
         return {"message": "Email sent successfully"}
+
     except Exception as e:
         logging.error("Error sending email: %s", str(e))
         return HTTPException(status_code=500, detail="Error sending email")
