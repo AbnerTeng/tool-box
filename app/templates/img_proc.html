@@ -13,11 +13,11 @@
     <div class="topbar">
         <div class="topbar-content">
             <div class="topbar-left">
-                <a href="{{ url_for_prefixed(request, 'home') }}" role="button">Tool-Box</a>
+                <a href="{{ url_for_prefixed(request, '/') }}" role="button">Tool-Box</a>
                 <img src="{{ url_for_prefixed(request, 'static', filename='images/deep-learning.png') }}" alt="Log">
             </div>
             <div class="menu">
-                <a href="{{ url_for_prefixed(request, 'home') }}" role="button">Home</a>
+                <a href="{{ url_for_prefixed(request, '/') }}" role="button">Home</a>
                 <div class="dropdown">
                     <a href="{{ url_for_prefixed(request, 'img_proc') }}" class="dropbtn" role="button">Services</a>
                     <div class="dropdown-content">
