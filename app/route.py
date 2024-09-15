@@ -93,22 +93,22 @@ async def about(request: Request):
 #     return templates.TemplateResponse("signup.html", {"request": request})
 
 
-@app.get('/service1', response_class=HTMLResponse, name="img_proc")
+@app.get('/img_proc', response_class=HTMLResponse, name="img_proc")
 async def img_proc(request: Request):
     return templates.TemplateResponse("img_proc.html", {"request": request})
 
 
-@app.get('/service2', response_class=HTMLResponse)
+@app.get('/email_sender', response_class=HTMLResponse)
 async def email_sender(request: Request):
     return templates.TemplateResponse("email_sender.html", {"request": request})
 
 
-@app.get('/service2_templates', response_class=HTMLResponse)
+@app.get('/email_temp', response_class=HTMLResponse)
 async def email_temp(request: Request):
     return templates.TemplateResponse("email_temp.html", {"request": request})
 
 
-@app.get('/contact_us', response_class=HTMLResponse)
+@app.get('/contact', response_class=HTMLResponse)
 async def contact(request: Request):
     return templates.TemplateResponse("contact.html", {"request": request})
 
