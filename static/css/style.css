@@ -1,0 +1,251 @@
+a {
+    color: #1F9CDA;
+    text-decoration: none;
+}
+
+.logreg-container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
+.reg {
+    color: white;
+    background-color: #07334b;
+}
+
+.log {
+    color: #07334b;
+    background-color: white;
+    border: 1px solid #07334b;
+}
+
+.big-input {
+    width: 300px;
+    height: 30px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.choose-input {
+    width: 300px;
+    height: 30px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: none;
+}
+
+.select-input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.process-button {
+    background-color: #07334b;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.goback {
+    background-color: #07334b;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.goback a {
+    color: white;
+    text-decoration: none;
+}
+
+.instructions {
+    margin-top: 20px;
+}
+
+.instructions h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #07334b;
+}
+
+.instructions p {
+    font-size: 16px;
+    color: #07334b;
+    margin-top: 20px;
+    line-height: 1.2;
+}
+
+/* RWD part */
+@media screen and (max-width: 768px) {
+    .topbar-content {
+        margin-left: 20px;
+        margin-right: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topbar img {
+        margin: 10px 0;
+    }
+
+    .menu {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .menu>a,
+    .menu>.dropdown {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .flex-main {
+        padding-top: 120px;
+    }
+
+    .main-text {
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 100%;
+    }
+
+    .main-text h1 {
+        font-size: 32px;
+    }
+
+    .main-text p {
+        font-size: 16px;
+    }
+
+    .dropbtn {
+        font-size: 18px;
+    }
+
+    .service-header h1 {
+        font-size: 24px;
+    }
+
+    .service-header p {
+        width: 90%;
+        font-size: 16px;
+    }
+
+    .container {
+        margin: 50px 20px;
+        flex-direction: column;
+    }
+
+    .content-service {
+        width: 100%;
+        margin: 10px 10px;
+    }
+
+    .content-service h2 {
+        font-size: 20px;
+    }
+
+    .explore-container {
+        flex-direction: row;
+        margin-top: 10px;
+    }
+
+    .explore {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .flex-position {
+        padding-top: 120px;
+    }
+
+    .method {
+        margin: 50px 20px;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .topbar-content {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .topbar p {
+        font-size: 24px;
+    }
+
+    .menu>a,
+    .menu>.dropdown {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .flex-main {
+        padding-top: 120px;
+    }
+
+    .main-text h1 {
+        font-size: 28px;
+    }
+
+    .main-text p {
+        font-size: 14px;
+    }
+
+    .dropbtn {
+        font-size: 18px;
+    }
+
+    .service-header h1 {
+        font-size: 20px;
+    }
+
+    .service-header p {
+        font-size: 14px;
+    }
+
+    .content-service h2 {
+        font-size: 18px;
+    }
+
+    .content-service {
+        width: 100%;
+    }
+
+    .explore {
+        font-size: 14px;
+        margin-right: 0;
+    }
+
+    .flex-position {
+        padding-top: 120px;
+    }
+
+    .method {
+        margin: 50px 10px;
+        width: 80%;
+    }
+}

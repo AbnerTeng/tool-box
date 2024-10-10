@@ -1,3 +1,6 @@
+# secret data
+app/api/.google_app_pwd
+
 # Mac garbage data
 .DS_Store
 # Byte-compiled / optimized / DLL files

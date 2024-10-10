@@ -105,7 +105,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateMarkdownPreview();
 });
-
-
-// const TinyMDE = require('tiny-markdown-editor');
-
